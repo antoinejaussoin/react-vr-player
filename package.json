@@ -1,10 +1,11 @@
 {
   "name": "react-vr-player",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A 360° HTML5 video player as a React Component",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
