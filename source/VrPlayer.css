@@ -1,0 +1,124 @@
+div.VrPlayer {
+    background-color: #000;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height:100%;
+    width:100%;
+    position: fixed;
+    top:0;
+    left:0;
+}
+div.VrPlayer select {
+    border: none;
+    background: rgba(0, 0, 0, .6);
+    color: rgba(255, 255, 255, .8);
+    padding: 2px;
+    border-radius: 3px;
+}
+div.VrPlayer video {
+    display: none;
+}
+div.VrPlayer a {
+    cursor: pointer;
+    color: rgba(255, 255, 255, .8);
+}
+div.VrPlayer a:hover {
+    color: rgba(255, 255, 255, .65);
+    text-decoration: none;
+}
+div.VrPlayer a:active {
+    color: rgba(255, 255, 255, .8);
+    text-shadow: 2px 2px 3px rgba(200, 200, 200, .9);
+}
+div.VrPlayer {
+    background-color: #000;
+}
+div.VrPlayer .left {
+    width: 50%;
+    float: left;
+    position: relative;
+    top: 43%;
+    left: 2%;
+    z-index: 1;
+}
+div.VrPlayer .right {
+    width: 50%;
+    float: right;
+    position: relative;
+    top: 43%;
+    right: 2%;
+    z-index: 1;
+}
+div.VrPlayer .glcanvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+div.VrPlayer .video-controls {
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+    opacity: .8;
+    height: 25px;
+    background: rgba(73,155,234,1);
+    background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(32,124,229,1)));
+    background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+    background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+    background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+    background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0 );
+}
+div.VrPlayer input.seek-bar {
+    width: 35%;
+    float: left;
+    height:25px;
+    margin-top: 0px;
+}
+div.VrPlayer select {
+    width: 12%;
+    max-width: 300px;
+    margin-right: 5px;
+}
+div.VrPlayer .icon {
+    margin: 7px 5px 0px 5px;
+    width: 20px;
+    float: left;
+}
+div.VrPlayer .rfloat {
+    float: right;
+    margin-top: 5px;
+}
+div.VrPlayer .title, .message, .large-play {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    color: rgba(255, 255, 255, .5);
+}
+div.VrPlayer span.brand {
+    float: left;
+    margin-left: 20px;
+    color:black;
+    font-variant: small-caps;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top:1px;
+}
+
+div.VrPlayer span.info {
+    float: left;
+    margin-left: 20px;
+    color:black;
+    font-size: 13px;
+    margin-top:4px;
+}

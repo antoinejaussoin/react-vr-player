@@ -1,0 +1,47 @@
+{
+  "name": "react-vr-player",
+  "version": "0.0.1",
+  "description": "A 360° HTML5 video player as a React Component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoinejaussoin/react-vr-player.git"
+  },
+  "keywords": [
+    "virtual",
+    "reality",
+    "360°",
+    "video",
+    "oculus",
+    "rift",
+    "dk2",
+    "html5",
+    "react",
+    "webpack"
+  ],
+  "author": "Antoine Jaussoin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antoinejaussoin/react-vr-player/issues"
+  },
+  "homepage": "https://github.com/antoinejaussoin/react-vr-player#readme",
+  "devDependencies": {
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.20.1",
+    "eslint": "^1.7.1",
+    "eslint-plugin-react": "^3.6.2",
+    "file-loader": "^0.8.4",
+    "gl-matrix": "^2.3.1",
+    "jsx-loader": "^0.13.2",
+    "lodash": "^3.10.1",
+    "react": "^0.14.0",
+    "stats.js": "^1.0.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.2",
+    "webpack-glsl-loader": "^1.0.1"
+  }
+}
