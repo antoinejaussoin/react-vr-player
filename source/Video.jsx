@@ -1,11 +1,12 @@
 import { default as React, PropTypes } from 'react';
-import _ from 'lodash';
 
 import getVRDevices from './helpers/get-vr-devices';
 import PhoneVR from './helpers/phonevr';
 import getWebGl from './webgl';
 import initialiseManualControls from './helpers/manual-controls';
 import goFullScreen from './helpers/goFullScreen';
+
+const noop = () => {};
 
 class Video extends React.Component {
 
@@ -114,8 +115,8 @@ Video.defaultProps = {
     isPlaying: false,
     isMute: false,
     isFullscreen: false,
-    onFullscreen: _.noop,
-    onPositionChange: _.noop,
+    onFullscreen: noop,
+    onPositionChange: noop,
     keys: {
         left: 'A',
         right: 'D',

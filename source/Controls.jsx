@@ -1,5 +1,6 @@
 import { default as React, PropTypes } from 'react';
-import _ from 'lodash';
+
+const noop = () => {};
 
 class Controls extends React.Component {
     render() {
@@ -54,13 +55,13 @@ Controls.propTypes = {
 
 Controls.defaultProps = {
     isPlaying: false,
-    onPlayPause: _.noop,
+    onPlayPause: noop,
     isMute: false,
-    onMute: _.noop,
+    onMute: noop,
     isFullscreen: false,
-    onFullScreen: _.noop,
+    onFullScreen: noop,
     position: 0,
-    onPositionChange: _.noop,
+    onPositionChange: noop,
     brand: '',
     title: ''
 };
