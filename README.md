@@ -18,7 +18,7 @@ It it adapted from eleVR player, which you can find [here](https://github.com/ha
 
 First, get it from NPM:
 `npm install react-vr-player`
-Then, if you use Webpack, it should just be a matter of `const player = require('react-vr-player')`
+Then, if you use Webpack, it should just be a matter of `const VrPlayer = require('react-vr-player')` or ES6 `import VrPlayer from 'react-vr-player'`
 
 ## Use
 
@@ -49,3 +49,14 @@ render() {
     );
 }
 ```
+
+## Gotchas
+
+- The Oculus (and other PC-based VR headsets) are only supported on "beta" versions of Chrome and Firefox (respectively [Chromium](https://drive.google.com/folderview?id=0BzudLt22BqGRbW9WTHMtOWMzNjQ) and [Firefox Nightly](http://mozvr.com/downloads/)). I personally recommend Firefox for now.
+- Due to security restrictions on the Browser, only videos from the same domain will work. You can't just reference a video from another domain as the URL, as it will not work [because of WebGL restrictions](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Using_textures_in_WebGL). CORS is being implemented but last time I checked it wasn't working.
+
+## Future
+
+- I'm planning to have feature-parity with eleVR shortly
+- Adding support for "chapters"
+- Making sure it works with the final VR api when this is released
