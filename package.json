@@ -1,10 +1,10 @@
 {
   "name": "react-vr-player",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A 360° HTML5 video player as a React Component",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -12,8 +12,8 @@
     "url": "git+https://github.com/antoinejaussoin/react-vr-player.git"
   },
   "keywords": [
-    "virtual",
-    "reality",
+    "virtual reality",
+    "vr",
     "360°",
     "video",
     "oculus",

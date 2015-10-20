@@ -2,15 +2,18 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: {
-        app: './source/index.js',
-        react: ['react']
-    },
+    context: path.join(__dirname),
+    entry: './source/index.js',
     devtool: 'source-map',
     output: {
-        path: path.resolve(__dirname+'/build'),
-        publicPath: '/assets/',
-        filename: 'vr-player-min.js'
+        path: path.resolve(__dirname),
+        filename: 'react-vr-player.js',
+        libraryTarget: 'umd',
+        libary:'react-vr-player'
+    },
+    externals: {
+       'react': 'var React',
+       'react/addons': 'var React'
     },
     module: {
         loaders: [
@@ -20,14 +23,10 @@ module.exports = {
             { test: /\.glsl$/, loaders: ['webpack-glsl'], exclude: /(node_modules)/ }
         ]
     },
-    externals: {
-
-    },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('react', 'react.js'),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({

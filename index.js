@@ -1,1 +1,1 @@
-module.exports = require('./source');
+module.exports = require('./react-vr-player');
