@@ -5,6 +5,8 @@ VR / 360° Video Player as a React Component
 
 It it adapted from eleVR player, which you can find [here](https://github.com/hawksley/eleVR-Web-Player)
 
+You can find a [live example](https://antoinejaussoin.github.io/) of this component [here](https://antoinejaussoin.github.io/).
+
 ## What it does support so far
 
 - 360° Videos
@@ -18,7 +20,10 @@ It it adapted from eleVR player, which you can find [here](https://github.com/ha
 
 First, get it from NPM:
 `npm install react-vr-player`
-Then, if you use Webpack, it should just be a matter of `const VrPlayer = require('react-vr-player')` or ES6 `import VrPlayer from 'react-vr-player'`
+Then, if you use Webpack, load it up with `const VrPlayer = require('react-vr-player')` or ES6 `import VrPlayer from 'react-vr-player'`, it should work right out of the box.
+It (obviously) has React as a dependency, but the already bundled version doesn't contain React.
+
+For an example on how to use it, see this (simple) [demo here](https://github.com/antoinejaussoin/antoinejaussoin.github.io).
 
 ## Use
 
@@ -40,11 +45,11 @@ render() {
         playPause: ' '
     };
     return (
-            <VrPlayer
-                sources={sources}
-                brand="Some Brand Name"
-                title="Some Video Title"
-                keys={keys}></VrPlayer>
+        <VrPlayer
+            sources={sources}
+            brand="Some Brand Name"
+            title="Some Video Title"
+            keys={keys}></VrPlayer>
 
     );
 }
