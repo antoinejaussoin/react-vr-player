@@ -64,19 +64,21 @@ class VrPlayer extends React.Component {
 
     componentDidMount() {
         const keys = this.props.keys;
-        window.addEventListener('keypress', event => {
-            switch (String.fromCharCode(event.charCode)) {
-                case keys.fullScreen.toLowerCase():
-                    this.fullScreen();
-                    break;
-                case keys.zeroSensor.toLowerCase():
-                    this.zeroSensor();
-                    break;
-                case keys.playPause.toLowerCase():
-                    this.playPause();
-                    break;
-            }
-        }, true);
+        if (window){
+            window.addEventListener('keypress', event => {
+                switch (String.fromCharCode(event.charCode)) {
+                    case keys.fullScreen.toLowerCase():
+                        this.fullScreen();
+                        break;
+                    case keys.zeroSensor.toLowerCase():
+                        this.zeroSensor();
+                        break;
+                    case keys.playPause.toLowerCase():
+                        this.playPause();
+                        break;
+                }
+            }, true);
+        }
     }
 }
 

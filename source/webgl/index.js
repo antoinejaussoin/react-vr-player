@@ -213,6 +213,9 @@ module.exports = function (vrDevice, phoneDevice, video, canvas, width) {
     }
 
     function setCanvasSize() {
+        if (!window){
+            return;
+        }
         var w = window.innerWidth,
             h = window.innerHeight;
 

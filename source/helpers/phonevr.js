@@ -11,11 +11,13 @@ function PhoneVR() {
     this.deviceGamma = null;
     this.deviceBeta = null;
 
-    window.addEventListener('deviceorientation', function (orientation) {
-        this.deviceAlpha = orientation.alpha;
-        this.deviceGamma = orientation.gamma;
-        this.deviceBeta = orientation.beta;
-    }.bind(this));
+    if (window){
+        window.addEventListener('deviceorientation', function (orientation) {
+            this.deviceAlpha = orientation.alpha;
+            this.deviceGamma = orientation.gamma;
+            this.deviceBeta = orientation.beta;
+        }.bind(this));
+    }
 }
 
 PhoneVR.prototype.orientationIsAvailable = function () {
@@ -67,6 +69,9 @@ PhoneVR.prototype.rotationQuat = function () {
 };
 
 function getScreenOrientation() {
+    if (!window){
+        return 0;
+    }
     switch (window.screen.orientation || window.screen.mozOrientation) {
         case 'landscape-primary':
             return 90;

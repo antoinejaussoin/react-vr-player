@@ -62,6 +62,7 @@ render() {
 
 ## Future
 
+- Adding support for local files
 - I'm planning to have feature-parity with eleVR shortly
 - Adding support for "chapters"
 - Making sure it works with the final VR api when this is released

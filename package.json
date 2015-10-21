@@ -1,6 +1,6 @@
 {
   "name": "react-vr-player",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "A 360° HTML5 video player as a React Component",
   "main": "index.js",
   "scripts": {
