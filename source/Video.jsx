@@ -14,7 +14,8 @@ class Video extends React.Component {
         super(props);
 
         this.state = {
-            webGl: null
+            webGl: null,
+            devices: null
         };
     }
 
@@ -39,6 +40,7 @@ class Video extends React.Component {
             .then(devs => {
                 console.log('devices: ', devs);
                 devices = devs;
+                this.setState({devices});
             })
             .then(() => {
                 return getWebGl(devices, phone, this.refs.video, this.refs.canvas);
@@ -70,6 +72,7 @@ class Video extends React.Component {
         const video = this.refs.video;
         const canvas = this.refs.canvas;
         const webGl = this.state.webGl;
+        const devices = this.state.devices;
         if (!this.props.isPlaying && newProps.isPlaying) {
             video.play();
             webGl.draw();
@@ -82,7 +85,7 @@ class Video extends React.Component {
             video.muted = newProps.isMute;
         }
         if (this.props.isFullscreen != newProps.isFullscreen){
-            goFullScreen(canvas, video, newProps.isFullscreen);
+            goFullScreen(canvas, devices, newProps.isFullscreen);
         }
     }
 

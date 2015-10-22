@@ -1,6 +1,6 @@
 import { default as React, PropTypes } from 'react';
 
-const noop = () => {};
+const noop = () => {}; 
 
 class Controls extends React.Component {
     render() {
