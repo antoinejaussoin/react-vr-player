@@ -15,7 +15,8 @@ class Video extends React.Component {
 
         this.state = {
             webGl: null,
-            devices: null
+            devices: null,
+            needReload: false
         };
     }
 
@@ -30,6 +31,10 @@ class Video extends React.Component {
                 </video>
             </div>
         );
+    }
+
+    componentWillMount() {
+
     }
 
     componentDidMount(){
@@ -56,8 +61,13 @@ class Video extends React.Component {
 
         video.addEventListener('timeupdate', () => {
             if (!video.paused) {
-                const value = (video.currentTime / video.duration) * 100;
-                this.props.onPositionChange(value);
+                if (video.duration > 0){
+                    const value = (video.currentTime / video.duration) * 100;
+                    this.props.onPositionChange(value);
+                } else {
+                    this.props.onPositionChange(0);
+                }
+
             }
         });
 
@@ -69,57 +79,93 @@ class Video extends React.Component {
     }
 
     componentWillReceiveProps(newProps){
-        const video = this.refs.video;
-        const canvas = this.refs.canvas;
-        const webGl = this.state.webGl;
-        const devices = this.state.devices;
-        if (!this.props.isPlaying && newProps.isPlaying) {
-            video.play();
+        if (this.props.sources != newProps.sources){
+            this.updateSources();
+        }
+    }
+
+    componentDidUpdate(){
+        if (this.state.needReload){
+            console.log('Reloading video');
+            const video = this.refs.video;
+            const webGl = this.state.webGl;
+            video.load();
             webGl.draw();
-        }
-        if (this.props.isPlaying && !newProps.isPlaying) {
-            video.pause();
-            //dwebGl.stop();
-        }
-        if (this.props.isMute !== newProps.isMute) {
-            video.muted = newProps.isMute;
-        }
-        if (this.props.isFullscreen != newProps.isFullscreen){
-            goFullScreen(canvas, devices, newProps.isFullscreen);
+            this.setState({needReload: false});
         }
     }
 
     componentWillUnmount(){
         const webGl = this.state.webGl;
-        webGl.stop();
+        if (webGl){
+            webGl.stop();
+        }
+    }
+
+    playPause() {
+        const video = this.refs.video;
+        const webGl = this.state.webGl;
+        if (video.paused) {
+            video.play();
+            webGl.draw();
+        } else {
+            video.pause();
+        }
+        this.props.onPlayPause(!video.paused);
+    }
+
+    toggleMute() {
+        const video = this.refs.video;
+        video.muted = !video.muted;
+        this.props.onMute(video.muted);
+    }
+
+    goFullScreen() {
+        const canvas = this.refs.canvas;
+        const devices = this.state.devices;
+        goFullScreen(canvas, devices, true);
     }
 
     setPosition(percentage) {
         const video = this.refs.video;
         const time = video.duration * percentage / 100;
-        console.log('time: ', time);
-        console.log('percentage: ', percentage);
         video.currentTime = time;
+        this.props.onPositionChange(percentage);
+    }
+
+    zeroSensor(){
+        const devices = this.state.devices;
+        if (devices.sensor) {
+            devices.sensor.zeroSensor();
+        }
+    }
+
+    updateSources () {
+        const video = this.refs.video;
+        const webGl = this.state.webGl;
+        video.pause();
+        webGl.stop();
+        this.props.onPlayPause(!video.paused);
+        this.props.onPositionChange(0);
+        this.setState({needReload: true});
     }
 }
 
 Video.propTypes = {
     sources: PropTypes.array.isRequired,
-    isPlaying: PropTypes.bool,
-    isMute: PropTypes.bool,
-    isFullscreen: PropTypes.bool,
     onFullscreen: PropTypes.func,
     onPositionChange: PropTypes.func,
+    onPlayPause: PropTypes.func,
+    onMute: PropTypes.func,
     keys: PropTypes.object
 };
 
 Video.defaultProps = {
     sources: [],
-    isPlaying: false,
-    isMute: false,
-    isFullscreen: false,
     onFullscreen: noop,
     onPositionChange: noop,
+    onPlayPause: noop,
+    onMute: noop,
     keys: {
         left: 'A',
         right: 'D',

@@ -3,7 +3,9 @@
 var glMatrix = require('gl-matrix');
 var settings = require('./settings');
 var Shader = require('./shader');
-var Stats = require('stats.js');
+if (__DEVELOPMENT__) {
+    var Stats = require('stats.js');
+}
 
 module.exports = function (vrDevice, phoneDevice, video, canvas, width) {
     var positionsBuffer, verticesIndexBuffer, texture;
@@ -48,12 +50,14 @@ module.exports = function (vrDevice, phoneDevice, video, canvas, width) {
     });
 
     function initStats() {
-        stats = new Stats();
-        stats.setMode(0);
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.right = '50px';
-        stats.domElement.style.bottom = '50px';
-        canvas.ownerDocument.body.appendChild(stats.domElement);
+        if (Stats) {
+            stats = new Stats();
+            stats.setMode(0);
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.right = '50px';
+            stats.domElement.style.bottom = '50px';
+            canvas.ownerDocument.body.appendChild(stats.domElement);
+        }
     }
 
     function initWebGL() {
@@ -172,7 +176,9 @@ module.exports = function (vrDevice, phoneDevice, video, canvas, width) {
 
     function buildDrawScene() {
         return function drawScene(frameTime) {
-            stats.begin();
+            if (stats) {
+                stats.begin();
+            }
             frame = frameTime;
 
             setCanvasSize(gl, vrDevice, canvas, width);
@@ -205,7 +211,9 @@ module.exports = function (vrDevice, phoneDevice, video, canvas, width) {
                 drawOneEye(1, perspectiveMatrix);
             }
 
-            stats.end();
+            if (stats) {
+                stats.end();
+            }
 
             frameId = requestAnimationFrame(drawScene);
             previousFrame = frame;

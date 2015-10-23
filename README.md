@@ -11,10 +11,12 @@ You can find a [live example](https://antoinejaussoin.github.io/) of this compon
 
 - 360° Videos
 - Play/Pause
+- Manual rotation (using the keyboard)
 - Seek
 - Mute
 - Fullscreen
 - HMD device (tested on Oculus Rift DK2, and Homido)
+- Local file loading
 
 ## Install
 
@@ -29,11 +31,11 @@ For an example on how to use it, see this (simple) [demo here](https://github.co
 
 ```javascript
 render() {
-    const sources = [
+    const sources = [ // Declare an array of video sources
         { url: '/videos/video.webm', type: 'video/webm'},
         { url: '/videos/video.mp4', type: 'video/mp4'}
     ];
-    const keys = { // Facultative, if you want to re-map the keys
+    const keys = { // If you want to re-define the keys, here are the defaults
         left: 'A',
         right: 'D',
         up: 'W',
@@ -49,7 +51,7 @@ render() {
             sources={sources}
             brand="Some Brand Name"
             title="Some Video Title"
-            keys={keys}></VrPlayer>
+            keys={keys} />
 
     );
 }
@@ -57,12 +59,12 @@ render() {
 
 ## Gotchas
 
-- The Oculus (and other PC-based VR headsets) are only supported on "beta" versions of Chrome and Firefox (respectively [Chromium](https://drive.google.com/folderview?id=0BzudLt22BqGRbW9WTHMtOWMzNjQ) and [Firefox Nightly](http://mozvr.com/downloads/)). I personally recommend Firefox for now.
+- The Oculus (and other PC-based VR headsets) are only supported on "beta" versions of Chrome and Firefox (respectively [Chromium](https://drive.google.com/folderview?id=0BzudLt22BqGRbW9WTHMtOWMzNjQ) and [Firefox Nightly](http://mozvr.com/downloads/)). I personally recommend Firefox Nightly for now, especially if you are using Oculus Direct Mode which is not working on Chromium.
 - Due to security restrictions on the Browser, only videos from the same domain will work. You can't just reference a video from another domain as the URL, as it will not work [because of WebGL restrictions](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Using_textures_in_WebGL). CORS is being implemented but last time I checked it wasn't working.
 
 ## Future
 
-- Adding support for local files
 - I'm planning to have feature-parity with eleVR shortly
+- Add control helpers when the video is not started
 - Adding support for "chapters"
 - Making sure it works with the final VR api when this is released
