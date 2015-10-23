@@ -11,33 +11,33 @@ class VrPlayer extends React.Component {
             isPlaying: false,
             isMute: false,
             isFullscreen: false,
-            position: 0
+            position: 0,
+            sources: []
         };
     }
 
     render() {
-
         return (
             <div className="VrPlayer">
 
-                <Video isPlaying={this.state.isPlaying}
-                        isMute={this.state.isMute}
-                        isFullscreen={this.state.isFullscreen}
+                <Video  ref="video"
+                        sources={this.state.sources}
                         onFullScreen={this.fullScreen.bind(this)}
-                        sources={this.props.sources}
-                        keys={this.props.keys}
-                        onPositionChange={p => this.setState({position: p})}
-                        ref="video">
+                        onPositionChange={ p => this.setState({position: p}) }
+                        onPlayPause={this.playPause.bind(this)}
+                        onMute={this.mute.bind(this)}
+                        keys={this.props.keys} >
                 </Video>
 
                 <Controls isPlaying={this.state.isPlaying}
-                        onPlayPause={this.playPause.bind(this)}
+                        onPlayPause={this.togglePlayPause.bind(this)}
                         isMute={this.state.isMute}
-                        onMute={this.mute.bind(this)}
+                        onMute={this.toggleMute.bind(this)}
                         isFullscreen={this.state.isFullscreen}
                         onFullScreen={this.fullScreen.bind(this)}
                         position={this.state.position}
                         onPositionChange={this.changePosition.bind(this)}
+                        onLocalVideoSelected={this.localVideoSelected.bind(this)}
                         brand={this.props.brand}
                         title={this.props.title}
                 />
@@ -46,38 +46,68 @@ class VrPlayer extends React.Component {
         );
     }
 
-    playPause(){
-        this.setState({isPlaying: !this.state.isPlaying});
+    playPause(playing) {
+        this.setState({isPlaying: playing});
     }
 
-    mute(){
-        this.setState({isMute: !this.state.isMute});
+    togglePlayPause() {
+        this.refs.video.playPause();
     }
 
-    fullScreen(){
-        this.setState({isFullscreen: !this.state.isFullscreen});
+    mute(muted) {
+        this.setState({isMute: muted});
+    }
+
+    toggleMute() {
+        this.refs.video.toggleMute();
+    }
+
+    fullScreen(isFullscreen) {
+        this.setState({isFullscreen: isFullscreen});
+    }
+
+    toggleFullScreen() {
+        this.refs.video.goFullScreen();
     }
 
     changePosition(percentage) {
         this.refs.video.setPosition(percentage);
     }
 
+    localVideoSelected(videoSource){
+        this.setState({sources: [ videoSource ]});
+    }
+
+    zeroSensor() {
+        this.refs.video.zeroSensor();
+    }
+
+    componentWillMount() {
+        this.setState({sources: this.props.sources });
+    }
+
     componentDidMount() {
         const keys = this.props.keys;
-        if (window){
+        if (window) {
             window.addEventListener('keypress', event => {
                 switch (String.fromCharCode(event.charCode)) {
                     case keys.fullScreen.toLowerCase():
-                        this.fullScreen();
+                        this.toggleFullScreen();
                         break;
                     case keys.zeroSensor.toLowerCase():
                         this.zeroSensor();
                         break;
                     case keys.playPause.toLowerCase():
-                        this.playPause();
+                        this.togglePlayPause();
                         break;
                 }
             }, true);
+        }
+    }
+
+    componentWillReceiveProps(newProps){
+        if (this.props.sources !== newProps.sources){
+            this.setState({sources: newProps.sources });
         }
     }
 }
