@@ -1,5 +1,5 @@
 import { default as React, PropTypes } from 'react';
-import css from './VrPlayer.css';
+import './VrPlayer.css';
 
 import Controls from './Controls';
 import Video from './Video';
@@ -34,7 +34,7 @@ class VrPlayer extends React.Component {
                         isMute={this.state.isMute}
                         onMute={this.toggleMute.bind(this)}
                         isFullscreen={this.state.isFullscreen}
-                        onFullScreen={this.fullScreen.bind(this)}
+                        onFullScreen={this.toggleFullScreen.bind(this)}
                         position={this.state.position}
                         onPositionChange={this.changePosition.bind(this)}
                         onLocalVideoSelected={this.localVideoSelected.bind(this)}

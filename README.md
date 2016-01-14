@@ -1,8 +1,6 @@
 # react-vr-player
 VR / 360° Video Player as a React Component
 
-> This is still very much beta.
-
 It it adapted from eleVR player, which you can find [here](https://github.com/hawksley/eleVR-Web-Player)
 
 You can find a [live example](https://antoinejaussoin.github.io/) of this component [here](https://antoinejaussoin.github.io/).
@@ -32,8 +30,8 @@ For an example on how to use it, see this (simple) [demo here](https://github.co
 ```javascript
 render() {
     const sources = [ // Declare an array of video sources
-        { url: '/videos/video.webm', type: 'video/webm'},
-        { url: '/videos/video.mp4', type: 'video/mp4'}
+        { url: '/videos/video.webm', type: 'video/webm' },
+        { url: '/videos/video.mp4', type: 'video/mp4' }
     ];
     const keys = { // If you want to re-define the keys, here are the defaults
         left: 'A',
@@ -68,3 +66,7 @@ render() {
 - Add control helpers when the video is not started
 - Adding support for "chapters"
 - Making sure it works with the final VR api when this is released
+
+## Change log
+
+- 0.1.1: Bug fixes: rotation issue, full-screen issue

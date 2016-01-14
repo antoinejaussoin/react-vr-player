@@ -22,12 +22,12 @@ export default function initialiseManualControls(keys, onRotate) {
     };
     manualControls[keys.rotateLeft.toLowerCase()] = {
         index: 2,
-        sign: -1,
+        sign: 1,
         active: 0
     };
     manualControls[keys.rotateRight.toLowerCase()] = {
         index: 2,
-        sign: 1,
+        sign: -1,
         active: 0
     };
 
